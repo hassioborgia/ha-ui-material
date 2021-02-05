@@ -1,0 +1,421 @@
+views:
+  - title: Luci
+    path: luci
+    icon: 'mdi:light-switch'
+    badges: []
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            columns: 3
+            cards:
+              - type: button
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace-luci/1
+                entity: sensor.luci_accese
+                show_state: true
+                show_name: true
+                name: LUCI ACCESE
+                icon: 'mdi:lightbulb-on'
+                icon_height: 32px
+              - type: button
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace-luci/2
+                entity: sensor.luci_unavailable
+                name: NON DISPONIBILI
+                show_state: true
+                icon: 'mdi:lightbulb-multiple-off'
+                icon_height: 32px
+          - type: vertical-stack
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: button
+                    double_tap_action:
+                      action: toggle
+                    entity: light.soggiorno
+                    icon: 'mdi:sofa'
+                    show_state: true
+                    icon_height: 24px
+                    tap_action:
+                      action: more-info
+                    style: >
+                      ha-card { background: {% if is_state('light.soggiorno',
+                      'on') %} #FCF3CF {% endif %}; }
+                  - type: button
+                    double_tap_action:
+                      action: toggle
+                    entity: light.studio
+                    icon: 'mdi:desk'
+                    show_state: true
+                    icon_height: 24px
+                    tap_action:
+                      action: more-info
+                    style: >
+                      ha-card { background: {% if is_state('light.studio', 'on')
+                      %} #FCF3CF {% endif %}; }
+              - type: horizontal-stack
+                cards:
+                  - type: button
+                    double_tap_action:
+                      action: toggle
+                    entity: light.entrata_e_corridoio
+                    icon: 'mdi:door-closed'
+                    show_state: true
+                    icon_height: 24px
+                    tap_action:
+                      action: more-info
+                    name: Entrata e Corridoio
+                    style: >
+                      ha-card { background: {% if
+                      is_state('light.entrata_e_corridoio', 'on') %} #FCF3CF {%
+                      endif %}; }
+                  - type: button
+                    double_tap_action:
+                      action: toggle
+                    entity: switch.terrazza
+                    icon: 'mdi:window-open-variant'
+                    show_state: true
+                    icon_height: 24px
+                    tap_action:
+                      action: more-info
+                    name: Terrazza
+                    style: >
+                      ha-card { background: {% if is_state('switch.terrazza',
+                      'on') %} #FCF3CF {% endif %}; }
+              - type: horizontal-stack
+                cards:
+                  - type: button
+                    double_tap_action:
+                      action: toggle
+                    entity: light.camera_da_letto
+                    icon: 'mdi:bed-king-outline'
+                    show_state: true
+                    icon_height: 24px
+                    tap_action:
+                      action: more-info
+                    name: Camera Letto
+                    style: >
+                      ha-card { background: {% if
+                      is_state('light.camera_da_letto', 'on') %} #FCF3CF {%
+                      endif %}; }
+                  - type: button
+                    double_tap_action:
+                      action: toggle
+                    entity: light.stanzetta
+                    icon: 'mdi:bed-queen-outline'
+                    show_state: true
+                    icon_height: 24px
+                    tap_action:
+                      action: more-info
+                    name: Stanzetta
+                    style: >
+                      ha-card { background: {% if is_state('light.stanzetta',
+                      'on') %} #FCF3CF {% endif %}; }
+              - type: horizontal-stack
+                cards:
+                  - type: button
+                    double_tap_action:
+                      action: toggle
+                    entity: light.bagno_grande
+                    icon: 'mdi:toilet'
+                    show_state: true
+                    icon_height: 24px
+                    tap_action:
+                      action: more-info
+                    name: Bagno Grande
+                    style: >
+                      ha-card { background: {% if is_state('light.bagno_grande',
+                      'on') %} #FCF3CF {% endif %}; }
+                  - type: button
+                    double_tap_action:
+                      action: toggle
+                    entity: light.bagno_servizio
+                    show_state: true
+                    icon: 'mdi:toilet'
+                    icon_height: 24px
+                    tap_action:
+                      action: more-info
+                    name: Bagno Servizio
+                    style: >
+                      ha-card { background: {% if
+                      is_state('light.bagno_servizio', 'on') %} #FCF3CF {% endif
+                      %}; }
+              - type: horizontal-stack
+                cards:
+                  - type: button
+                    double_tap_action:
+                      action: toggle
+                    entity: light.esterno
+                    show_state: true
+                    icon_height: 24px
+                    icon: 'mdi:outdoor-lamp'
+                    tap_action:
+                      action: more-info
+                    name: Esterno
+                    style: >
+                      ha-card { background: {% if is_state('light.esterno',
+                      'on') %} #FEF9E7 {% endif %}; }
+                  - type: button
+                    double_tap_action:
+                      action: toggle
+                    entity: light.balconi
+                    show_state: true
+                    icon_height: 24px
+                    icon: 'mdi:window-closed-variant'
+                    tap_action:
+                      action: more-info
+                    name: Esterno
+                    style: >
+                      ha-card { background: {% if is_state('light.balconi',
+                      'on') %} #FEF9E7 {% endif %}; }
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: button
+                entity: scene.film
+                icon_height: 32px
+                show_state: true
+              - type: button
+                tap_action:
+                  action: toggle
+                entity: script.modalita_notte
+                icon_height: 32px
+          - type: picture-elements
+            elements:
+              - double_tap_action:
+                  action: more-info
+                entity: switch.terrazza
+                icon: 'mdi:lightbulb-on-outline'
+                style:
+                  left: 30%
+                  top: 29%
+                  background: 'rgba(255,255,255,0.4)'
+                  border-radius: 50px
+                tap_action:
+                  action: toggle
+                type: state-icon
+              - double_tap_action:
+                  action: more-info
+                entity: light.corridoio
+                icon: 'mdi:lightbulb-on-outline'
+                style:
+                  left: 55.4%
+                  top: 58%
+                  background: 'rgba(255,255,255,0.4)'
+                  border-radius: 50px
+                tap_action:
+                  action: toggle
+                type: state-icon
+              - double_tap_action:
+                  action: more-info
+                entity: light.bagno_servizio
+                icon: 'mdi:lightbulb-on-outline'
+                style:
+                  left: 69.4%
+                  top: 58%
+                  background: 'rgba(255,255,255,0.4)'
+                  border-radius: 50px
+                tap_action:
+                  action: toggle
+                type: state-icon
+              - double_tap_action:
+                  action: more-info
+                entity: light.camera_da_letto
+                icon: 'mdi:lightbulb-on-outline'
+                style:
+                  left: 66%
+                  top: 73%
+                  background: 'rgba(255,255,255,0.4)'
+                  border-radius: 50px
+                tap_action:
+                  action: toggle
+                type: state-icon
+              - double_tap_action:
+                  action: more-info
+                entity: light.bagno_grande
+                icon: 'mdi:lightbulb-on-outline'
+                style:
+                  left: 54%
+                  top: 73%
+                  background: 'rgba(255,255,255,0.4)'
+                  border-radius: 50px
+                tap_action:
+                  action: toggle
+                type: state-icon
+              - double_tap_action:
+                  action: more-info
+                entity: light.stanzetta
+                icon: 'mdi:lightbulb-on-outline'
+                style:
+                  left: 43.4%
+                  top: 73%
+                  background: 'rgba(255,255,255,0.4)'
+                  border-radius: 50px
+                tap_action:
+                  action: toggle
+                type: state-icon
+              - double_tap_action:
+                  action: more-info
+                entity: light.soggiorno
+                icon: 'mdi:lightbulb-on-outline'
+                style:
+                  left: 61%
+                  top: 29%
+                  background: 'rgba(255,255,255,0.4)'
+                  border-radius: 50px
+                tap_action:
+                  action: toggle
+                type: state-icon
+              - double_tap_action:
+                  action: more-info
+                entity: light.entrata
+                icon: 'mdi:lightbulb-on-outline'
+                style:
+                  left: 51.4%
+                  top: 46%
+                  background: 'rgba(255,255,255,0.4)'
+                  border-radius: 50px
+                tap_action:
+                  action: toggle
+                type: state-icon
+              - double_tap_action:
+                  action: more-info
+                entity: light.studio
+                icon: 'mdi:lightbulb-on-outline'
+                style:
+                  left: 42%
+                  top: 51%
+                  background: 'rgba(255,255,255,0.4)'
+                  border-radius: 50px
+                tap_action:
+                  action: toggle
+                type: state-icon
+            image: /local/borgia.jpg
+  - icon: 'mdi:lightbulb'
+    panel: false
+    title: ''
+    badges: []
+    cards:
+      - type: entity-filter
+        icon: 'mdi:lightbulb-multiple-off'
+        entities:
+          - light.abat_jour_arturo
+          - light.abat_jour_camera
+          - light.abat_jour_maria_teresa
+          - light.abat_jour_soggiorno
+          - light.abat_jour_stanzetta
+          - light.bagno_grande_1
+          - light.bagno_grande_2
+          - light.bagno_servizio_1
+          - light.bagno_servizio_2
+          - light.balcone_soggiorno
+          - light.balcone_camera_letto
+          - light.balcone_stanzetta
+          - light.lampada_soggiorno
+          - light.corridoio_1
+          - light.corridoio_2
+          - light.entrata_1
+          - light.entrata_2
+          - light.lampada_studio
+          - light.portone
+          - light.camera_letto_1
+          - light.camera_letto_2
+          - light.stanzetta_1
+          - light.stanzetta_2
+          - light.studio_1
+          - light.studio_2
+          - light.studio_3
+          - light.studio_4
+        state_filter:
+          - 'on'
+        card:
+          type: entities
+          title: LUCI ACCESE
+          icon: 'mdi:lightbulb-outline'
+          show_icon: true
+          show_header_toggle: true
+          show_state: true
+          show_name: true
+  - path: ''
+    icon: 'mdi:lightbulb-off'
+    panel: false
+    badges: []
+    cards:
+      - type: entity-filter
+        icon: 'mdi:lightbulb-multiple-off'
+        entities:
+          - light.abat_jour_arturo
+          - light.abat_jour_camera
+          - light.abat_jour_maria_teresa
+          - light.abat_jour_soggiorno
+          - light.abat_jour_stanzetta
+          - light.bagno_grande_1
+          - light.bagno_grande_2
+          - light.bagno_servizio_1
+          - light.bagno_servizio_2
+          - light.balcone_soggiorno
+          - light.balcone_camera_letto
+          - light.balcone_stanzetta
+          - light.lampada_soggiorno
+          - light.corridoio_1
+          - light.corridoio_2
+          - light.entrata_1
+          - light.entrata_2
+          - light.lampada_studio
+          - light.portone
+          - light.camera_letto_1
+          - light.camera_letto_2
+          - light.stanzetta_1
+          - light.stanzetta_2
+          - light.studio_1
+          - light.studio_2
+          - light.studio_3
+          - light.studio_4
+        state_filter:
+          - unavailable
+        card:
+          type: entities
+          title: LUCI ACCESE
+          icon: 'mdi:lightbulb-off-outline'
+          show_icon: true
+          show_state: false
+          show_name: true
+          show_header_toggle: false
+  - icon: 'mdi:home-lightbulb-outline'
+    badges: []
+    cards:
+      - type: entities
+        icon: 'mdi:home-lightbulb-outline'
+        entities:
+          - light.abat_jour_arturo
+          - light.abat_jour_maria_teresa
+          - light.abat_jour_soggiorno
+          - light.abat_jour_stanzetta
+          - light.bagno_grande_1
+          - light.bagno_grande_2
+          - light.bagno_servizio_1
+          - light.bagno_servizio_2
+          - light.balcone_soggiorno
+          - light.balcone_camera_letto
+          - light.balcone_stanzetta
+          - light.lampada_soggiorno
+          - light.corridoio_1
+          - light.corridoio_2
+          - light.entrata_1
+          - light.entrata_2
+          - light.lampada_studio
+          - light.portone
+          - light.camera_letto_1
+          - light.camera_letto_2
+          - light.stanzetta_1
+          - light.stanzetta_2
+          - light.studio_1
+          - light.studio_2
+          - light.studio_3
+          - light.studio_4
+        title: LUCI DI CASA
+        state_color: true
