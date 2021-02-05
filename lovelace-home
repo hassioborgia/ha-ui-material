@@ -1,0 +1,495 @@
+views:
+  - title: Home
+    path: Home
+    panel: false
+    icon: 'mdi:home'
+    badges: []
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: markdown
+                content: >-
+
+                  <font size="6px">{{ states('sensor.time') }}</font></br> <font
+                  size="3px">{{ ["Lun", "Mar", "Mer", "Gio", "Ven", "Sab",
+                  "Dom"][now().weekday()] }} {{ now().day}} {{ ["Gen", "Feb",
+                  "Mar", "Apr", "Mag", "Giu", "Lug", "Ago", "Set", "Ott", "Nov",
+                  "Dic"] [now().month -1] }} {{now().year}}</font></p>
+              - type: button
+                tap_action:
+                  action: more-info
+                entity: sensor.comfort_casa_borgia
+                show_state: true
+                icon_height: 40px
+                hold_action:
+                  action: none
+                name: COMFORT CASA
+                style: |
+                  ha-card {
+                   background: #E9F7EF;
+                  }
+          - type: vertical-stack
+            cards:
+              - type: conditional
+                conditions:
+                  - entity: switch.caldaia
+                    state: unavailable
+                card:
+                  type: markdown
+                  content: >-
+                    <ha-icon icon="mdi:alert-circle-outline"></ha-icon> La
+                    Caldaia è nello stato "indisponibile". Verifica subito
+              - type: conditional
+                conditions:
+                  - entity: switch.pannello
+                    state: unavailable
+                card:
+                  type: markdown
+                  content: >-
+                    <ha-icon icon="mdi:alert-circle-outline"></ha-icon> Il
+                    Pannello è nello stato "indisponibile". Verifica subito
+              - type: conditional
+                conditions:
+                  - entity: climate.ingresso
+                    state: heat
+                card:
+                  type: markdown
+                  content: >-
+                    <ha-icon icon="mdi:alert-circle-outline"></ha-icon> I
+                    riscaldamenti sono ancora attivi. Verifica subito
+          - type: horizontal-stack
+            cards:
+              - type: glance
+                entities:
+                  - entity: person.arturo
+                state_color: false
+              - type: glance
+                entities:
+                  - entity: person.m_teresa
+          - type: horizontal-stack
+            cards:
+              - type: button
+                tap_action:
+                  action: toggle
+                entity: switch.attiva_caldaia
+                show_state: true
+                icon_height: 24px
+                name: CALDAIA
+                icon: 'mdi:water-boiler'
+              - type: button
+                tap_action:
+                  action: toggle
+                entity: switch.attiva_pannello
+                show_state: true
+                icon_height: 24px
+                name: PANNELLO
+                icon: 'mdi:solar-panel'
+          - type: horizontal-stack
+            cards:
+              - type: button
+                entity: sensor.luci_accese
+                icon: 'mdi:lightbulb-group-outline'
+                show_state: true
+                name: LUCI
+                icon_height: 25px
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace-luci
+                hold_action:
+                  action: none
+                style: >
+                  ha-card { background: {% if is_state('light.casa', 'on') %}
+                  #F9E79F {% endif %}; }
+              - type: button
+                entity: sensor.switch_accesi
+                name: SWITCH
+                show_state: true
+                icon: 'mdi:electric-switch'
+                icon_height: 25px
+                show_icon: true
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace-dispositivi
+                hold_action:
+                  action: none
+              - type: button
+                entity: sensor.switch_unavailable
+                show_state: true
+                icon: 'mdi:alert-octagon-outline'
+                name: SWITCH
+                icon_height: 25px
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace-dispositivi
+                hold_action:
+                  action: none
+              - type: button
+                entity: sensor.bynary_unavailable
+                show_state: true
+                icon: 'mdi:dip-switch'
+                name: BYNARY
+                icon_height: 25px
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace-dispositivi
+                hold_action:
+                  action: none
+          - type: horizontal-stack
+            cards:
+              - color_thresholds:
+                  - value: 0
+                    color: '#F8C471'
+                  - value: 1000
+                    color: '#F5B041'
+                  - value: 2000
+                    color: '#F39C12'
+                  - value: 4000
+                    color: '#D68910'
+                type: 'custom:mini-graph-card'
+                entities:
+                  - sensor.casa_potenza
+                show:
+                  graph: bar
+                  extrema: true
+                  name: false
+                  icon: false
+                aggregate_func: max
+                group_by: date
+                height: 100
+                bar_spacing: 6
+                animate: true
+                hours_to_show: 250
+                name: CONSUMO
+                points_per_hour: 0.5
+          - type: horizontal-stack
+            cards:
+              - type: entity
+                entity: sensor.energy_casa_daily
+                name: GIORNALIERO
+                style: |
+                  ha-card {
+                   background: #FEF9E7;
+                  }
+              - type: entity
+                entity: sensor.energy_casa_monthly
+                name: MENSILE
+                style: |
+                  ha-card {
+                   background: #FEF9E7 ;
+                  }
+      - type: vertical-stack
+        cards:
+          - type: vertical-stack
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: weather-forecast
+                    entity: weather.casa
+                    secondary_info_attribute: wind_speed
+                    show_forecast: false
+          - type: horizontal-stack
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - color_thresholds:
+                      - color: '#4dd2ff'
+                        value: 10
+                      - color: '#ffa31a'
+                        value: 15
+                      - color: '#ff1a1a'
+                        value: 20
+                    entities:
+                      - entity: sensor.temperature_esterno
+                        name: Esterno
+                      - entity: sensor.ingresso_temperature
+                        name: Casa
+                    icon: 'mdi:home-thermometer-outline'
+                    name: TEMPERATURA
+                    height: 80
+                    show:
+                      legend: true
+                      name: true
+                      extrema: true
+                      icon: true
+                    type: 'custom:mini-graph-card'
+              - type: vertical-stack
+                cards:
+                  - color_thresholds:
+                      - color: '#EBF5FB'
+                        value: 40
+                      - color: '#3498DB'
+                        value: 60
+                      - color: '#21618C'
+                        value: 80
+                    entities:
+                      - entity: sensor.humidity_esterno
+                        name: Esterno
+                      - entity: sensor.humidity_soggiorno
+                        name: Casa
+                    icon: 'mdi:water-percent'
+                    name: UMIDITÀ
+                    show:
+                      legend: true
+                      name: true
+                      extrema: false
+                      icon: true
+                    type: 'custom:mini-graph-card'
+                  - color_thresholds:
+                      - color: '#4dd2ff'
+                        value: 990
+                      - color: '#ffa31a'
+                        value: 1010
+                      - color: '#ff1a1a'
+                        value: 1030
+                    entities:
+                      - entity: sensor.pressure_casa_slm
+                        name: Pressione
+                    icon: 'mdi:gauge'
+                    name: PRESSIONE
+                    show:
+                      legend: true
+                      name: true
+                      extrema: false
+                      icon: true
+                    type: 'custom:mini-graph-card'
+          - type: horizontal-stack
+            cards:
+              - type: entity
+                entity: climate.ingresso
+                name: RISCALDAMENTO
+                style: |
+                  .value {
+                   font-size: 22px !important;
+                  }
+                    ha-card { background: {% if is_state('climate.ingresso', 'heat') %}
+                  #F5B7B1 {% endif %};
+          - type: horizontal-stack
+            cards:
+              - type: entity
+                entity: climate.clima_soggiorno
+                icon: 'mdi:air-conditioner'
+                name: SOGGIORNO
+                style: >
+                  .value {
+                   font-size: 22px !important;
+                   }
+                  ha-card { background: {% if
+                  is_state('climate.clima_soggiorno', 'heat') %}
+
+                  #F5B7B1 {% endif %};
+              - type: entity
+                entity: climate.clima_stanza
+                icon: 'mdi:air-conditioner'
+                name: STANZA
+                style: >
+                  .value {
+                   font-size: 22px !important;
+                  }
+
+                  ha-card { background: {% if is_state('climate.clima_stanza',
+                  'heat') %}
+
+                  #F5B7B1 {% endif %};
+          - type: horizontal-stack
+            cards:
+              - type: entity
+                entity: climate.clima_stanzetta
+                name: STANZETTA
+                icon: 'mdi:air-conditioner'
+                style: >
+                  .value {
+                   font-size: 22px !important;
+                  }
+
+                  ha-card { background: {% if
+                  is_state('climate.clima_stanzetta', 'heat') %}
+
+                  #F5B7B1 {% endif %};
+              - type: entity
+                entity: climate.clima_terrazza
+                name: TERRAZZA
+                icon: 'mdi:air-conditioner'
+                style: >
+                  .value {
+                   font-size: 22px !important;
+                  }
+
+                  ha-card { background: {% if is_state('climate.clima_terrazza',
+                  'heat') %}
+
+                  #F5B7B1 {% endif %};
+      - type: vertical-stack
+        cards:
+          - type: vertical-stack
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: entity
+                    entity: vacuum.cincin
+                    name: CINCIN
+                    style: |
+                      ha-card {
+                       background: #EBF5FB;
+                      }
+                  - type: entity
+                    entity: vacuum.cincin
+                    attribute: battery_level
+                    unit: '%'
+                    name: BATTERIA
+                    icon: 'mdi:battery-charging-high'
+              - type: picture-elements
+                elements:
+                  - type: icon
+                    tap_action:
+                      action: call-service
+                      service: script.aspira_bagno_piccolo
+                    icon: 'mdi:broom'
+                    style:
+                      top: 61%
+                      left: 75.3%
+                      background: 'rgba(255,255,255,0.4)'
+                      border-radius: 50px
+                      padding: 5px
+                  - type: icon
+                    tap_action:
+                      action: call-service
+                      service: script.aspira_camera_da_letto
+                    icon: 'mdi:broom'
+                    style:
+                      top: 77%
+                      left: 75.3%
+                      background: 'rgba(255,255,255,0.4)'
+                      border-radius: 50px
+                      padding: 5px
+                  - type: icon
+                    tap_action:
+                      action: call-service
+                      service: script.aspira_bagno_grande
+                    icon: 'mdi:broom'
+                    style:
+                      top: 77%
+                      left: 60.3%
+                      background: 'rgba(255,255,255,0.4)'
+                      border-radius: 50px
+                      padding: 5px
+                  - type: icon
+                    tap_action:
+                      action: call-service
+                      service: script.aspira_stanzetta
+                    icon: 'mdi:broom'
+                    style:
+                      top: 77%
+                      left: 44.3%
+                      background: 'rgba(255,255,255,0.4)'
+                      border-radius: 50px
+                      padding: 5px
+                  - type: icon
+                    tap_action:
+                      action: call-service
+                      service: script.aspira_corridoio
+                    icon: 'mdi:broom'
+                    style:
+                      top: 61%
+                      left: 60.3%
+                      background: 'rgba(255,255,255,0.4)'
+                      border-radius: 50px
+                      padding: 5px
+                  - type: icon
+                    tap_action:
+                      action: call-service
+                      service: script.aspira_entrata
+                    icon: 'mdi:broom'
+                    style:
+                      top: 47%
+                      left: 55.3%
+                      background: 'rgba(255,255,255,0.4)'
+                      border-radius: 50px
+                      padding: 5px
+                  - type: icon
+                    tap_action:
+                      action: call-service
+                      service: script.aspira_studio
+                    icon: 'mdi:broom'
+                    style:
+                      top: 51%
+                      left: 41.3%
+                      background: 'rgba(255,255,255,0.4)'
+                      border-radius: 50px
+                      padding: 5px
+                  - type: icon
+                    tap_action:
+                      action: call-service
+                      service: script.aspira_cucina
+                    icon: 'mdi:broom'
+                    style:
+                      top: 25%
+                      left: 44.3%
+                      background: 'rgba(255,255,255,0.4)'
+                      border-radius: 50px
+                      padding: 5px
+                  - type: icon
+                    tap_action:
+                      action: call-service
+                      service: script.aspira_soggiorno
+                    icon: 'mdi:broom'
+                    style:
+                      top: 25%
+                      left: 68.3%
+                      background: 'rgba(255,255,255,0.4)'
+                      border-radius: 50px
+                      padding: 5px
+                  - type: icon
+                    tap_action:
+                      action: call-service
+                      service: script.pulizia_terrazzo
+                    icon: 'mdi:broom'
+                    style:
+                      top: 25%
+                      left: 21.3%
+                      background: 'rgba(255,255,255,0.4)'
+                      border-radius: 50px
+                      padding: 5px
+                image: /local/cincin.jpg
+              - type: horizontal-stack
+                cards:
+                  - type: entity
+                    entity: vacuum.cincin
+                    attribute: filter_life_level
+                    name: FILTRO
+                    unit: '%'
+                    icon: 'mdi:air-filter'
+                  - type: entity
+                    entity: vacuum.cincin
+                    attribute: side_brush_life_level
+                    name: LATERALE
+                    unit: '%'
+                    icon: 'mdi:broom'
+                  - type: entity
+                    entity: vacuum.cincin
+                    attribute: main_brush_life_level
+                    name: PRINCIPALE
+                    unit: '%'
+                    icon: 'mdi:broom'
+          - type: 'custom:mini-graph-card'
+            entities:
+              - entity: binary_sensor.motion_entrata
+                name: Entrata
+                color: '#F4D03F'
+              - entity: binary_sensor.motion_corridoio
+                name: Corridoio
+                color: '#7FB3D5'
+            name: MOVIMENTO
+            hours_to_show: 1
+            height: 80
+            points_per_hour: 60
+            update_interval: 30
+            aggregate_func: max
+            line_width: 4
+            smoothing: false
+            state_map:
+              - value: 'off'
+                label: Assente
+              - value: 'on'
+                label: Rilevato
