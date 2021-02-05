@@ -1,0 +1,248 @@
+views:
+  - title: ''
+    path: clima
+    icon: 'mdi:thermostat'
+    badges: []
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: vertical-stack
+                cards:
+                  - color_thresholds:
+                      - color: '#4dd2ff'
+                        value: 10
+                      - color: '#ffa31a'
+                        value: 15
+                      - color: '#ff1a1a'
+                        value: 20
+                    entities:
+                      - entity: sensor.ingresso_temperature
+                        name: Casa
+                    icon: 'mdi:home-thermometer-outline'
+                    name: CASA
+                    show:
+                      legend: true
+                      name: true
+                      extrema: true
+                      icon: true
+                    type: 'custom:mini-graph-card'
+                  - type: entity
+                    entity: sensor.casa_potenza
+                    name: CONSUMO
+              - type: thermostat
+                entity: climate.ingresso
+          - type: horizontal-stack
+            cards:
+              - type: vertical-stack
+                cards:
+                  - color_thresholds:
+                      - color: '#4dd2ff'
+                        value: 10
+                      - color: '#ffa31a'
+                        value: 15
+                      - color: '#ff1a1a'
+                        value: 20
+                    entities:
+                      - entity: sensor.temperature_soggiorno
+                        name: Soggiorno
+                    icon: 'mdi:home-thermometer-outline'
+                    name: SOGGIORNO
+                    show:
+                      legend: true
+                      name: true
+                      extrema: true
+                      icon: true
+                    type: 'custom:mini-graph-card'
+                  - type: entity
+                    entity: sensor.clima_soggiorno_potenza
+                    name: CONSUMO
+              - type: thermostat
+                entity: climate.clima_soggiorno
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: vertical-stack
+                cards:
+                  - color_thresholds:
+                      - color: '#4dd2ff'
+                        value: 10
+                      - color: '#ffa31a'
+                        value: 15
+                      - color: '#ff1a1a'
+                        value: 20
+                    entities:
+                      - entity: sensor.temperature_stanza
+                        name: Stanza
+                    icon: 'mdi:home-thermometer-outline'
+                    name: STANZA
+                    show:
+                      legend: true
+                      name: true
+                      extrema: true
+                      icon: true
+                    type: 'custom:mini-graph-card'
+                  - type: entity
+                    entity: sensor.clima_stanza_energy_power
+                    name: CONSUMO
+              - type: thermostat
+                entity: climate.clima_stanza
+          - type: horizontal-stack
+            cards:
+              - type: vertical-stack
+                cards:
+                  - color_thresholds:
+                      - color: '#4dd2ff'
+                        value: 10
+                      - color: '#ffa31a'
+                        value: 15
+                      - color: '#ff1a1a'
+                        value: 20
+                    entities:
+                      - entity: sensor.temperature_stanzetta
+                        name: Stanzetta
+                    icon: 'mdi:home-thermometer-outline'
+                    name: STANZETTA
+                    show:
+                      legend: true
+                      name: true
+                      extrema: true
+                      icon: true
+                    type: 'custom:mini-graph-card'
+                  - type: entity
+                    entity: sensor.clima_stanzetta_energy_power
+                    name: CONSUMO
+              - type: thermostat
+                entity: climate.clima_stanzetta
+      - type: horizontal-stack
+        cards:
+          - type: vertical-stack
+            cards:
+              - color_thresholds:
+                  - color: '#4dd2ff'
+                    value: 10
+                  - color: '#ffa31a'
+                    value: 15
+                  - color: '#ff1a1a'
+                    value: 20
+                entities:
+                  - entity: sensor.temperature_terrazza
+                    name: Terrazza
+                icon: 'mdi:home-thermometer-outline'
+                name: TERRAZZA
+                show:
+                  legend: true
+                  name: true
+                  extrema: true
+                  icon: true
+                type: 'custom:mini-graph-card'
+              - type: entity
+                entity: sensor.terrazza_potenza
+                name: CONSUMO
+          - type: thermostat
+            entity: climate.clima_terrazza
+  - icon: 'mdi:home-thermometer-outline'
+    badges: []
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - color_thresholds:
+                  - color: '#4dd2ff'
+                    value: 10
+                  - color: '#ffa31a'
+                    value: 15
+                  - color: '#ff1a1a'
+                    value: 20
+                entities:
+                  - entity: sensor.temperature_cucina
+                    name: Cuc.
+                    color: '#5499C7'
+                  - entity: sensor.temperature_soggiorno
+                    name: Sogg.
+                    color: '#45B39D'
+                  - entity: sensor.temperature_studio
+                    name: Stu.
+                    color: '#F5B041'
+                icon: 'mdi:home-thermometer-outline'
+                name: ZONA GIORNO
+                show:
+                  legend: true
+                  name: true
+                  extrema: true
+                  icon: true
+                type: 'custom:mini-graph-card'
+              - color_thresholds:
+                  - color: '#4dd2ff'
+                    value: 10
+                  - color: '#ffa31a'
+                    value: 15
+                  - color: '#ff1a1a'
+                    value: 20
+                entities:
+                  - entity: sensor.temperature_stanza
+                    name: Stanza
+                    color: '#5499C7'
+                  - entity: sensor.temperature_stanzetta
+                    name: Stanzetta
+                    color: '#45B39D'
+                icon: 'mdi:home-thermometer-outline'
+                name: ZONA NOTTE
+                show:
+                  legend: true
+                  name: true
+                  extrema: true
+                  icon: true
+                type: 'custom:mini-graph-card'
+          - type: horizontal-stack
+            cards:
+              - color_thresholds:
+                  - color: '#4dd2ff'
+                    value: 10
+                  - color: '#ffa31a'
+                    value: 15
+                  - color: '#ff1a1a'
+                    value: 20
+                entities:
+                  - entity: sensor.humidity_cucina
+                    name: Cuc.
+                    color: '#5499C7'
+                  - entity: sensor.humidity_soggiorno
+                    name: Sogg.
+                    color: '#45B39D'
+                  - entity: sensor.humidity_studio
+                    name: Stu.
+                    color: '#F5B041'
+                icon: 'mdi:water-percent'
+                name: ZONA GIORNO
+                show:
+                  legend: true
+                  name: true
+                  extrema: true
+                  icon: true
+                type: 'custom:mini-graph-card'
+              - color_thresholds:
+                  - color: '#4dd2ff'
+                    value: 10
+                  - color: '#ffa31a'
+                    value: 15
+                  - color: '#ff1a1a'
+                    value: 20
+                entities:
+                  - entity: sensor.humidity_stanza
+                    name: Stanza
+                    color: '#5499C7'
+                  - entity: sensor.humidity_stanzetta
+                    name: Stanzetta
+                    color: '#45B39D'
+                icon: 'mdi:water-percent'
+                name: ZONA NOTTE
+                show:
+                  legend: true
+                  name: true
+                  extrema: true
+                  icon: true
+                type: 'custom:mini-graph-card'
