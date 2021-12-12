@@ -1,0 +1,1252 @@
+views:
+  - title: TOUCH HOME
+    icon: mdi:home-assistant
+    path: Touch Home
+    badges: []
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: grid
+            cards:
+              - type: button
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/luci
+                name: LUCI
+                icon: mdi:lightbulb-group
+                icon_height: 32px
+                entity: sensor.luci_accese_casa
+                show_state: true
+                hold_action:
+                  action: toggle
+              - type: button
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/clima
+                name: CLIMA
+                show_state: true
+                icon: mdi:sun-snowflake
+                icon_height: 32px
+                entity: sensor.clima_accesi
+            columns: 2
+            square: false
+          - type: grid
+            cards:
+              - type: button
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/routine
+                icon: mdi:robot
+                icon_height: 32px
+                show_state: true
+                name: ROUTINE
+                entity: sensor.automazioni_accesi
+                hold_action:
+                  action: none
+              - type: button
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/vacuum
+                name: PULIZIA
+                show_state: true
+                icon: mdi:robot-vacuum
+                icon_height: 32px
+                entity: vacuum.cincin
+            columns: 2
+            square: false
+          - type: grid
+            cards:
+              - type: button
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/media
+                icon: mdi:play-network
+                icon_height: 32px
+                show_state: true
+                name: MEDIA
+                entity: sensor.media_accesi
+              - type: button
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace-device/device
+                name: CORE
+                show_state: true
+                icon: mdi:home-assistant
+                icon_height: 32px
+                entity: binary_sensor.updater
+            columns: 2
+            square: false
+          - type: grid
+            cards:
+              - type: button
+                tap_action:
+                  action: more-info
+                icon_height: 32px
+                show_state: true
+                name: ALLARME
+                entity: alarm_control_panel.allarme
+              - type: button
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/Router
+                name: RETE
+                show_state: true
+                icon: mdi:wan
+                icon_height: 32px
+                entity: binary_sensor.fritz_box_7530_connection
+                show_icon: true
+                show_name: true
+            columns: 2
+            square: false
+          - type: grid
+            cards:
+              - type: button
+                tap_action:
+                  action: toggle
+                icon: mdi:water-boiler
+                icon_height: 32px
+                show_state: true
+                name: CALDAIA
+                entity: switch.attiva_caldaia
+              - type: button
+                tap_action:
+                  action: toggle
+                name: PANNELLO
+                show_state: true
+                icon: mdi:solar-panel
+                icon_height: 32px
+                entity: switch.attiva_pannello
+                show_icon: true
+                show_name: true
+            columns: 2
+            square: false
+      - type: vertical-stack
+        cards:
+          - type: grid
+            cards:
+              - type: entities
+                entities:
+                  - entity: person.arturo
+                state_color: true
+              - type: entities
+                entities:
+                  - entity: person.maria_teresa
+                state_color: true
+            columns: 2
+            square: false
+          - type: grid
+            cards:
+              - type: weather-forecast
+                entity: weather.casa
+                theme: noctis-purple
+            columns: 1
+            square: false
+          - type: grid
+            cards:
+              - type: button
+                tap_action:
+                  action: more-info
+                entity: sensor.mold_soggiorno
+                show_state: true
+                show_icon: true
+                icon: mdi:virus-outline
+                icon_height: 32px
+                name: RISCHIO MUFFA
+                hold_action:
+                  action: none
+                theme: noctis-orange
+              - type: button
+                tap_action:
+                  action: more-info
+                entity: sensor.comfort_casa_borgia
+                show_state: true
+                name: COMFORT CASA
+                icon_height: 32px
+                hold_action:
+                  action: none
+            columns: 2
+            square: false
+          - type: entity
+            entity: vacuum.cincin
+            state_color: true
+            theme: noctis-white
+            name: CINCIN ASPIRAPOLVERE
+      - type: vertical-stack
+        cards:
+          - type: grid
+            cards:
+              - type: custom:mini-graph-card
+                entities:
+                  - entity: sensor.weather_esterno_temperature
+                    name: TEMPERATURA
+                height: 100
+                show:
+                  labels: false
+                  extrema: true
+                  points: false
+                  name: false
+                align_icon: state
+                color_thresholds:
+                  - value: 5
+                    color: '#154360'
+                  - value: 10
+                    color: '#3498DB'
+                  - value: 15
+                    color: '#F1C40F'
+                  - value: 20
+                    color: '#E74C3C'
+              - type: custom:mini-graph-card
+                entities:
+                  - entity: sensor.weather_esterno_humidity
+                    name: UMIDITÀ
+                height: 100
+                show:
+                  labels: false
+                  extrema: true
+                  points: false
+                  name: false
+                align_icon: state
+                color_thresholds:
+                  - value: 30
+                    color: '#85C1E9'
+                  - value: 50
+                    color: '#3498DB'
+                  - value: 70
+                    color: '#2874A6'
+                  - value: 90
+                    color: '#1B4F72'
+            columns: 2
+            square: false
+          - type: grid
+            cards:
+              - type: entity
+                entity: sensor.produzione_power
+                name: ISTANTANEO
+                icon: mdi:transmission-tower
+                state_color: false
+                theme: noctis-green
+              - type: entity
+                entity: sensor.energy_casa_daily
+                name: OGGI
+                theme: noctis-blue
+            columns: 2
+            square: false
+          - type: media-control
+            entity: media_player.tv
+          - type: grid
+            cards:
+              - type: entity
+                entity: sensor.ha_touch_battery_level
+                name: TOUCH BATTERY
+                theme: noctis
+              - type: entity
+                entity: binary_sensor.porta_ingresso
+                icon: mdi:door-open
+                name: PORTA INGRESSO
+                state_color: true
+                theme: noctis-orange
+            columns: 2
+            square: false
+  - title: Luci
+    path: luci
+    icon: mdi:lightbulb-group
+    badges: []
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: grid
+            cards:
+              - type: entity
+                entity: sensor.luci_accese_casa
+                state_color: true
+                name: IN CASA
+                unit: Accese
+              - type: button
+                tap_action:
+                  action: toggle
+                entity: group.luci_in_casa
+                icon: mdi:home-lightbulb-outline
+                icon_height: 28px
+                show_state: true
+                name: ON/OFF
+            columns: 2
+            square: false
+          - type: grid
+            cards:
+              - type: button
+                tap_action:
+                  action: toggle
+                entity: script.modalita_notte
+                show_state: true
+                icon_height: 28px
+            columns: 2
+            square: false
+          - type: grid
+            cards:
+              - type: button
+                entity: group.luci_in_zona_giorno
+                name: ZONA GIORNO
+                icon: mdi:television
+                theme: noctis-blue
+                show_state: true
+                icon_height: 28px
+                tap_action:
+                  action: more-info
+                hold_action:
+                  action: toggle
+              - type: button
+                entity: group.luci_in_zona_notte
+                name: ZONA  NOTTE
+                icon: mdi:sleep
+                theme: noctis-purple
+                icon_height: 28px
+                show_state: true
+                tap_action:
+                  action: more-info
+                hold_action:
+                  action: toggle
+              - type: button
+                entity: group.luci_in_esterno
+                icon: mdi:home-export-outline
+                name: ESTERNO
+                theme: noctis-orange
+                icon_height: 28px
+                show_state: true
+                tap_action:
+                  action: more-info
+                hold_action:
+                  action: toggle
+              - type: button
+                entity: group.automation_light
+                icon: mdi:robot
+                name: ROUTINE
+                icon_height: 28px
+                show_state: true
+                tap_action:
+                  action: more-info
+                hold_action:
+                  action: toggle
+                theme: noctis-green
+            columns: 2
+            square: false
+      - type: vertical-stack
+        cards:
+          - type: entities
+            entities:
+              - entity: group.luci_in_zona_giorno
+                secondary_info: last-changed
+                name: LUCI IN ZONA GIORNO
+                icon: mdi:television
+          - type: grid
+            cards:
+              - type: button
+                entity: light.soggiorno
+                theme: noctis
+                show_icon: true
+                show_state: true
+                icon_height: 32px
+                icon: mdi:sofa
+              - type: custom:slider-button-card
+                entity: light.lampada_soggiorno
+                slider:
+                  direction: left-right
+                  background: solid
+                  use_state_color: true
+                  use_percentage_bg_opacity: false
+                  show_track: true
+                  toggle_on_click: false
+                  force_square: false
+                show_name: true
+                show_state: true
+                compact: false
+                icon:
+                  show: true
+                  use_state_color: false
+                  tap_action:
+                    action: more-info
+                action_button:
+                  mode: custom
+                  icon: mdi:power
+                  show: true
+                  show_spinner: true
+                  tap_action:
+                    action: toggle
+              - type: custom:slider-button-card
+                entity: light.abat_jour_soggiorno
+                slider:
+                  direction: left-right
+                  background: solid
+                  use_state_color: true
+                  use_percentage_bg_opacity: false
+                  show_track: true
+                  toggle_on_click: false
+                  force_square: false
+                show_name: true
+                show_state: true
+                compact: false
+                icon:
+                  show: true
+                  use_state_color: false
+                  tap_action:
+                    action: more-info
+                action_button:
+                  mode: custom
+                  icon: mdi:power
+                  show: true
+                  show_spinner: true
+                  tap_action:
+                    action: toggle
+              - type: custom:slider-button-card
+                entity: light.lampadario_soggiorno
+                slider:
+                  direction: left-right
+                  background: solid
+                  use_state_color: true
+                  use_percentage_bg_opacity: false
+                  show_track: true
+                  toggle_on_click: false
+                  force_square: false
+                show_name: true
+                show_state: true
+                compact: false
+                icon:
+                  show: true
+                  use_state_color: false
+                  tap_action:
+                    action: more-info
+                action_button:
+                  mode: custom
+                  icon: mdi:power
+                  show: true
+                  show_spinner: true
+                  tap_action:
+                    action: toggle
+              - type: button
+                entity: light.studio
+                theme: noctis
+                icon_height: 32px
+                icon: mdi:desk
+                show_state: true
+              - type: custom:slider-button-card
+                entity: light.faretti_studio_dx
+                slider:
+                  direction: left-right
+                  background: solid
+                  use_state_color: true
+                  use_percentage_bg_opacity: false
+                  show_track: true
+                  toggle_on_click: false
+                  force_square: false
+                show_name: true
+                show_state: true
+                compact: false
+                icon:
+                  show: true
+                  use_state_color: false
+                  tap_action:
+                    action: more-info
+                  icon: ''
+                action_button:
+                  mode: custom
+                  icon: mdi:power
+                  show: true
+                  show_spinner: true
+                  tap_action:
+                    action: toggle
+              - type: custom:slider-button-card
+                entity: light.faretti_studio_sx
+                slider:
+                  direction: left-right
+                  background: solid
+                  use_state_color: true
+                  use_percentage_bg_opacity: false
+                  show_track: true
+                  toggle_on_click: false
+                  force_square: false
+                show_name: true
+                show_state: true
+                compact: false
+                icon:
+                  show: true
+                  use_state_color: false
+                  tap_action:
+                    action: more-info
+                  icon: ''
+                action_button:
+                  mode: custom
+                  icon: mdi:power
+                  show: true
+                  show_spinner: true
+                  tap_action:
+                    action: toggle
+              - type: custom:slider-button-card
+                entity: light.lampada_studio
+                slider:
+                  direction: left-right
+                  background: solid
+                  use_state_color: true
+                  use_percentage_bg_opacity: false
+                  show_track: true
+                  toggle_on_click: false
+                  force_square: false
+                show_name: true
+                show_state: true
+                compact: false
+                icon:
+                  show: true
+                  use_state_color: false
+                  tap_action:
+                    action: more-info
+                  icon: ''
+                action_button:
+                  mode: custom
+                  icon: mdi:power
+                  show: true
+                  show_spinner: true
+                  tap_action:
+                    action: toggle
+              - type: button
+                entity: light.entrata_e_corridoio
+                name: AREE
+                theme: noctis
+                icon_height: 32px
+                icon: mdi:door-closed
+                show_state: true
+              - type: custom:slider-button-card
+                entity: light.entrata_e_corridoio
+                slider:
+                  direction: left-right
+                  background: solid
+                  use_state_color: true
+                  use_percentage_bg_opacity: false
+                  show_track: true
+                  toggle_on_click: false
+                  force_square: false
+                show_name: true
+                show_state: true
+                compact: false
+                icon:
+                  show: true
+                  use_state_color: false
+                  tap_action:
+                    action: more-info
+                  icon: ''
+                action_button:
+                  mode: custom
+                  icon: mdi:power
+                  show: true
+                  show_spinner: true
+                  tap_action:
+                    action: toggle
+              - type: button
+                entity: light.terrazza
+                theme: noctis
+                show_state: true
+                icon_height: 32px
+                icon: mdi:door-sliding
+              - type: custom:slider-button-card
+                entity: light.plafoniera_terrazza
+                slider:
+                  direction: left-right
+                  background: solid
+                  use_state_color: true
+                  use_percentage_bg_opacity: false
+                  show_track: true
+                  toggle_on_click: false
+                  force_square: false
+                show_name: true
+                show_state: true
+                compact: false
+                icon:
+                  show: true
+                  use_state_color: false
+                  tap_action:
+                    action: more-info
+                  icon: ''
+                action_button:
+                  mode: custom
+                  icon: mdi:power
+                  show: true
+                  show_spinner: true
+                  tap_action:
+                    action: toggle
+            square: false
+            columns: 3
+      - type: vertical-stack
+        cards:
+          - type: entities
+            entities:
+              - entity: group.luci_in_zona_notte
+                name: LUCI IN ZONA NOTTE
+                icon: mdi:sleep
+                secondary_info: last-changed
+          - type: grid
+            cards:
+              - type: button
+                tap_action:
+                  action: toggle
+                entity: light.camera_letto
+                icon_height: 32px
+                show_state: true
+                name: CAMERA
+                icon: mdi:bed-king
+                theme: noctis
+              - type: custom:slider-button-card
+                entity: light.plafoniera_camera_letto
+                slider:
+                  direction: left-right
+                  background: solid
+                  use_state_color: true
+                  use_percentage_bg_opacity: false
+                  show_track: true
+                  toggle_on_click: false
+                  force_square: false
+                show_name: true
+                show_state: true
+                compact: false
+                icon:
+                  show: true
+                  use_state_color: false
+                  tap_action:
+                    action: more-info
+                  icon: ''
+                action_button:
+                  mode: custom
+                  icon: mdi:power
+                  show: true
+                  show_spinner: true
+                  tap_action:
+                    action: toggle
+              - type: custom:slider-button-card
+                entity: light.abat_jour_arturo
+                slider:
+                  direction: left-right
+                  background: solid
+                  use_state_color: true
+                  use_percentage_bg_opacity: false
+                  show_track: true
+                  toggle_on_click: false
+                  force_square: false
+                show_name: true
+                show_state: true
+                compact: false
+                icon:
+                  show: true
+                  use_state_color: false
+                  tap_action:
+                    action: more-info
+                  icon: ''
+                action_button:
+                  mode: custom
+                  icon: mdi:power
+                  show: true
+                  show_spinner: true
+                  tap_action:
+                    action: toggle
+              - type: custom:slider-button-card
+                entity: light.abat_jour_maria_teresa
+                slider:
+                  direction: left-right
+                  background: solid
+                  use_state_color: true
+                  use_percentage_bg_opacity: false
+                  show_track: true
+                  toggle_on_click: false
+                  force_square: false
+                show_name: true
+                show_state: true
+                compact: false
+                icon:
+                  show: true
+                  use_state_color: false
+                  tap_action:
+                    action: more-info
+                  icon: ''
+                action_button:
+                  mode: custom
+                  icon: mdi:power
+                  show: true
+                  show_spinner: true
+                  tap_action:
+                    action: toggle
+              - type: button
+                tap_action:
+                  action: toggle
+                entity: light.stanzetta
+                icon_height: 32px
+                show_state: true
+                icon: mdi:bed-single
+                theme: noctis
+              - type: custom:slider-button-card
+                entity: light.plafoniera_stanzetta
+                slider:
+                  direction: left-right
+                  background: solid
+                  use_state_color: true
+                  use_percentage_bg_opacity: false
+                  show_track: true
+                  toggle_on_click: false
+                  force_square: false
+                show_name: true
+                show_state: true
+                compact: false
+                icon:
+                  show: true
+                  use_state_color: false
+                action_button:
+                  mode: custom
+                  show: true
+                  show_spinner: true
+              - type: custom:slider-button-card
+                entity: light.abat_jour_stanzetta
+                slider:
+                  direction: left-right
+                  background: solid
+                  use_state_color: true
+                  use_percentage_bg_opacity: false
+                  show_track: true
+                  toggle_on_click: false
+                  force_square: false
+                show_name: true
+                show_state: true
+                compact: false
+                icon:
+                  show: true
+                  use_state_color: false
+                action_button:
+                  mode: custom
+                  show: true
+                  show_spinner: true
+              - type: custom:slider-button-card
+                entity: light.plafoniera_bagno_grande
+                slider:
+                  direction: left-right
+                  background: solid
+                  use_state_color: true
+                  use_percentage_bg_opacity: false
+                  show_track: true
+                  toggle_on_click: false
+                  force_square: false
+                show_name: true
+                show_state: true
+                compact: false
+                icon:
+                  show: true
+                  use_state_color: false
+                action_button:
+                  mode: custom
+                  show: true
+                  show_spinner: true
+                name: Bagno Grande
+              - type: custom:slider-button-card
+                entity: light.plafoniera_bagno_piccolo
+                slider:
+                  direction: left-right
+                  background: solid
+                  use_state_color: true
+                  use_percentage_bg_opacity: false
+                  show_track: true
+                  toggle_on_click: false
+                  force_square: false
+                show_name: true
+                show_state: true
+                compact: false
+                icon:
+                  show: true
+                  use_state_color: false
+                action_button:
+                  mode: custom
+                  show: true
+                  show_spinner: true
+                name: Bagno Piccolo
+              - type: button
+                tap_action:
+                  action: more-info
+                entity: group.luci_in_esterno
+                icon: mdi:coach-lamp
+                icon_height: 32px
+                show_state: true
+                theme: noctis
+                name: ESTERNO
+                hold_action:
+                  action: toggle
+              - type: custom:slider-button-card
+                entity: light.portone
+                slider:
+                  direction: left-right
+                  background: solid
+                  use_state_color: true
+                  use_percentage_bg_opacity: false
+                  show_track: true
+                  toggle_on_click: false
+                  force_square: false
+                show_name: true
+                show_state: true
+                compact: false
+                icon:
+                  show: true
+                  use_state_color: false
+                  icon: ''
+                action_button:
+                  mode: custom
+                  show: true
+                  show_spinner: true
+                name: Portone
+            square: false
+            columns: 3
+  - title: ''
+    path: clima
+    icon: mdi:thermostat
+    badges: []
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: weather-forecast
+            entity: weather.casa
+            show_forecast: false
+          - type: horizontal-stack
+            cards:
+              - entities:
+                  - entity: sensor.ingresso_temperature
+                    name: Temp.
+                icon: mdi:thermometer
+                name: TEMPERATURA
+                hours_to_show: 96
+                points_per_hour: 0.5
+                align_icon: state
+                color_thresholds:
+                  - value: 20
+                    color: '#f39c12'
+                  - value: 21
+                    color: '#d35400'
+                  - value: 21.5
+                    color: '#c0392b'
+                show:
+                  legend: true
+                  name: false
+                  extrema: false
+                  average: true
+                  icon: true
+                  labels: false
+                type: custom:mini-graph-card
+              - entities:
+                  - entity: sensor.ingresso_humidity
+                    name: Hum.
+                line_color: '#5DADE2'
+                icon: mdi:water-percent
+                name: UMIDITÀ
+                hours_to_show: 96
+                points_per_hour: 0.5
+                align_icon: state
+                show:
+                  legend: true
+                  name: false
+                  extrema: false
+                  average: true
+                  icon: true
+                  labels: false
+                type: custom:mini-graph-card
+          - type: grid
+            cards:
+              - type: entity
+                entity: climate.ingresso
+                name: TERMOSIFONI
+                state_color: true
+                icon: mdi:radiator
+                theme: noctis-blue
+              - type: vertical-stack
+                cards:
+                  - type: entity
+                    entity: sensor.mold_soggiorno
+                    name: RISCHIO MUFFA
+                    icon: mdi:virus
+                    state_color: true
+                    theme: noctis-green
+                  - type: entity
+                    name: DEUMIDIFICATORE
+                    entity: humidifier.zona_giorno
+                    state_color: true
+                    theme: noctis-purple
+            columns: 2
+            square: false
+      - type: vertical-stack
+        cards:
+          - type: grid
+            cards:
+              - type: button
+                tap_action:
+                  action: toggle
+                entity: script.riscaldamento_rapido
+                icon: mdi:rocket-launch
+                icon_height: 32px
+                show_state: false
+                name: RISCALDAMENTO RAPIDO
+                theme: noctis-blue
+                hold_action:
+                  action: more-info
+              - type: button
+                tap_action:
+                  action: toggle
+                entity: script.spegni_clima
+                name: SPEGNI CLIMA
+                icon: mdi:hvac-off
+                icon_height: 32px
+                show_state: false
+                theme: noctis-green
+                show_icon: true
+            columns: 2
+            square: false
+          - type: entities
+            entities:
+              - entity: climate.clima_soggiorno
+                secondary_info: last-changed
+                icon: mdi:sun-snowflake
+                name: SOGGIORNO
+            state_color: true
+          - type: entities
+            entities:
+              - entity: climate.clima_studio
+                icon: mdi:sun-snowflake
+                secondary_info: last-changed
+                name: STUDIO
+            state_color: true
+          - type: entities
+            entities:
+              - entity: climate.clima_terrazza
+                icon: mdi:sun-snowflake
+                secondary_info: last-changed
+                name: TERRAZZA
+            state_color: true
+          - type: entities
+            entities:
+              - entity: climate.clima_stanza
+                secondary_info: last-changed
+                icon: mdi:sun-snowflake
+                name: STANZA
+            state_color: true
+          - type: entities
+            entities:
+              - entity: climate.clima_stanzetta
+                icon: mdi:sun-snowflake
+                name: STANZETTA
+                secondary_info: last-changed
+      - type: vertical-stack
+        cards:
+          - type: grid
+            cards:
+              - entities:
+                  - entity: sensor.consumo_clima_istantaneo
+                icon: mdi:counter
+                name: CONSUMO CLIMA
+                hours_to_show: 12
+                points_per_hour: 0.5
+                align_icon: state
+                color_thresholds:
+                  - value: 10
+                    color: '#F6DDCC'
+                  - value: 2000
+                    color: '#D35400'
+                  - value: 4000
+                    color: '#6E2C00'
+                show:
+                  legend: true
+                  name: false
+                  extrema: false
+                  average: true
+                  icon: true
+                  labels: false
+                type: custom:mini-graph-card
+              - type: entity
+                entity: sensor.durata_hvac_oggi
+                attribute: value
+                name: DURATA HVAC
+                icon: mdi:timer-outline
+                theme: noctis-orange
+                state_color: true
+            columns: 2
+            square: false
+          - type: energy-devices-graph
+  - path: vacuum
+    title: Vacuum
+    icon: mdi:robot-vacuum
+    badges: []
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: grid
+            cards:
+              - type: vertical-stack
+                cards:
+                  - type: picture-entity
+                    entity: vacuum.cincin
+                    image: /local/cin-cin.png
+                    aspect_ratio: 95%
+              - type: vertical-stack
+                cards:
+                  - type: button
+                    tap_action:
+                      action: toggle
+                    entity: script.aspira_casa
+                    icon_height: 24px
+                    name: ASPIRA CASA
+                    show_state: false
+                    theme: noctis-blue
+                  - type: button
+                    tap_action:
+                      action: toggle
+                    entity: script.aspira_pausa
+                    name: PAUSA
+                    icon_height: 24px
+                    theme: noctis-green
+                  - type: button
+                    tap_action:
+                      action: toggle
+                    entity: script.ritorna_base
+                    name: RITORNA BASE
+                    icon_height: 24px
+                    theme: noctis-orange
+            columns: 2
+            square: false
+          - type: horizontal-stack
+            cards:
+              - type: button
+                tap_action:
+                  action: toggle
+                entity: script.aspira_zona_giorno
+                name: ZONA GIORNO
+                icon_height: 24px
+                show_state: false
+              - type: button
+                tap_action:
+                  action: toggle
+                entity: script.aspira_zona_notte
+                name: ZONA NOTTE
+                icon_height: 24px
+                show_state: false
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: entity
+                entity: vacuum.cincin
+                attribute: cleaning_area
+                name: ULTIMA AREA PULITA
+                unit: mq
+                icon: mdi:texture-box
+                state_color: true
+              - type: entity
+                entity: vacuum.cincin
+                attribute: battery_level
+                unit: '%'
+                icon: mdi:battery-50
+                state_color: true
+                theme: noctis-purple
+                name: LIVELLO BATTERIA
+          - type: grid
+            cards:
+              - type: entity
+                entity: vacuum.cincin
+                attribute: main_brush_time_left
+                unit: ore
+                name: SPAZZOLA
+                icon: mdi:broom
+              - type: entity
+                entity: vacuum.cincin
+                attribute: side_brush_time_left
+                name: LATERALE
+                unit: ore
+                icon: mdi:rotate-left
+              - type: entity
+                entity: vacuum.cincin
+                attribute: filter_left_time
+                unit: ore
+                name: FILTRO
+                icon: mdi:air-filter
+            square: false
+          - type: entities
+            entities:
+              - entity: input_select.zone_di_pulizia
+                name: SELEZIONA ZONA
+              - entity: input_boolean.pulizia_zone
+                secondary_info: last-updated
+                name: AVVIA PULIZIA
+                icon: mdi:gesture-tap-button
+            state_color: true
+  - path: router
+    title: Router
+    icon: mdi:router-wireless-settings
+    badges: []
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: vertical-stack
+            cards:
+              - type: entities
+                entities:
+                  - entity: binary_sensor.fritz_box_7530_connection
+                    name: Stato Connessione
+                    secondary_info: last-updated
+                  - entity: binary_sensor.fritz_box_7530_link
+                    name: Alimentazione
+                    secondary_info: last-changed
+                  - entity: sensor.fritz_box_7530_external_ip
+                    name: IP Esterno
+                  - entity: binary_sensor.fritz_box_7530_firmware_update
+                    name: Firmware
+                title: FRITZBOX 7530
+                show_header_toggle: false
+                state_color: true
+          - type: horizontal-stack
+            cards:
+              - type: entity
+                entity: sensor.fritz_box_7530_link_download_throughput
+                name: DOWNSTREAM
+                state_color: false
+              - type: entity
+                entity: sensor.fritz_box_7530_link_upload_throughput
+                name: UPSTREAM
+          - type: grid
+            cards:
+              - type: button
+                tap_action:
+                  action: call-service
+                  service: fritz.reconnect
+                  service_data:
+                    device_id: 27c6423da8f67b39459c0e4a548651cd
+                  target: {}
+                icon_height: 32px
+                name: RICONETTI
+                show_state: true
+                icon: mdi:web-sync
+              - type: button
+                tap_action:
+                  action: call-service
+                  service: fritz.reboot
+                  service_data:
+                    device_id: 27c6423da8f67b39459c0e4a548651cd
+                  target: {}
+                entity: switch.attiva_caldaia
+                icon_height: 32px
+                name: RIAVVIA
+                icon: mdi:reload
+                show_state: false
+                show_icon: true
+                show_name: true
+              - type: button
+                tap_action:
+                  action: call-service
+                  service: fritz.cleanup
+                  service_data:
+                    device_id: 27c6423da8f67b39459c0e4a548651cd
+                  target: {}
+                entity: switch.attiva_caldaia
+                name: PULISCI
+                show_state: false
+                icon_height: 32px
+                icon: mdi:monitor-shimmer
+            square: false
+      - type: vertical-stack
+        cards:
+          - type: vertical-stack
+            cards:
+              - type: grid
+                cards:
+                  - type: gauge
+                    entity: sensor.speedtest_download
+                    min: 0
+                    max: 12
+                    name: SPEEDTEST DOWNLOAD
+                    needle: true
+                    severity:
+                      green: 7
+                      yellow: 4
+                      red: 0
+                  - type: gauge
+                    entity: sensor.speedtest_upload
+                    min: 0
+                    max: 2
+                    name: SPEEDTEST UPLOAD
+                    needle: true
+                    severity:
+                      green: 1
+                      yellow: 0.5
+                      red: 0
+                  - type: gauge
+                    entity: sensor.speedtest_ping
+                    min: 0
+                    max: 100
+                    needle: true
+                    severity:
+                      green: 0
+                      yellow: 40
+                      red: 80
+                    name: SPEEDTEST PING
+                square: false
+              - type: grid
+                cards:
+                  - type: statistics-graph
+                    entities:
+                      - entity: sensor.fritz_box_7530_download_throughput
+                        name: Download
+                      - entity: sensor.fritz_box_7530_upload_throughput
+                        name: Upload
+                    days_to_show: 30
+                    stat_types:
+                      - max
+                columns: 1
+                square: false
+  - title: Meteo
+    path: meteo
+    icon: mdi:weather-partly-rainy
+    badges: []
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: weather-forecast
+                entity: weather.casa
+                secondary_info_attribute: humidity
+          - type: horizontal-stack
+            cards:
+              - type: iframe
+                url: '  https://embed.windy.com/embed2.html?lat=39.334&lon=16.172&zoom=6&level=surface&overlay=wind&menu=&message=&marker=&calendar=&pressure=&type=map&location=coordinates&detail=&detailLat=39.496&detailLon=16.386&metricWind=default&metricTemp=default&radarRange=-1'
+                aspect_ratio: 80%
+      - type: vertical-stack
+        cards:
+          - type: iframe
+            url: '  https://www.rainviewer.com/map.html?loc=39.0874,16.2378,8&oFa=0&oC=0&oU=0&oCS=0&oF=0&oAP=1&rmt=4&c=1&o=83&lm=1&th=0&sm=1&sn='
+            aspect_ratio: 80%
+  - title: Routine
+    icon: mdi:semantic-web
+    path: routine
+    badges: []
+    cards:
+      - type: custom:auto-entities
+        card:
+          type: entities
+          state_color: true
+          title: ROUTINE
+          show_header_toggle: false
+        filter:
+          include:
+            - domain: automation
+          exclude: []
+        sort:
+          method: friendly_name
+          numeric: false
+          reverse: false
+      - type: custom:auto-entities
+        card:
+          type: entities
+          title: SCRIPT
+          state_color: true
+        filter:
+          include:
+            - domain: script
+          exclude: []
+        sort:
+          method: friendly_name
+          numeric: false
+          reverse: false
+title: TOUCH HOME
